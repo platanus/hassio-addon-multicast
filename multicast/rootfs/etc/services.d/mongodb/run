@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Community Hass.io Add-ons: Multicast
+# Runs the mongodb Server
+# ==============================================================================
+# shellcheck disable=SC1091
+source /usr/lib/hassio-addons/base.sh
+
+declare -a options
+
+hass.log.info 'Starting Mongodb'
+
+options+=(-config /etc/mongodb.conf)
+
+# Run MongoDB
+exec s6-setuidgid mongod /usr/bin/mongod "${options[@]}"

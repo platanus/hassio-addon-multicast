@@ -1,0 +1,39 @@
+{
+  "name": "Multicast",
+  "version": "2.0.2",
+  "slug": "multicast",
+  "description": "A persistent solution to presenting content across multiple Chromecast devices.",
+  "url": "https://github.com/superhawk610/multicast",
+  "webui": "[PROTO:ssl]://[HOST]:[PORT:3944]",
+  "startup": "application",
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armhf"
+  ],
+  "map": [
+    "config:rw",
+    "ssl"
+  ],
+  "boot": "auto",
+  "hassio_api": false,
+  "homeassistant_api": false,
+  "host_network": true,
+  "options": {
+    "cast_app_id": "",
+    "avahi_interfaces": "",
+    "avahi_hostname": "",
+    "avahi_domainname": "googlecast",
+    "enable_ipv6": false
+  },
+  "schema": {
+    "cast_app_id": "str",
+    "avahi_interfaces": "str",
+    "avahi_hostname": "str",
+    "avahi_domainname": "str",
+    "enable_ipv6": "bool"
+  },
+  "environment": {
+    "LOG_FORMAT": "{LEVEL}: {MESSAGE}"
+  }
+}

@@ -1,0 +1,26 @@
+#!/usr/bin/with-contenv bash
+# shellcheck disable=SC2191
+# ==============================================================================
+# Community Hass.io Add-ons: Multicast
+# Runs the Multicast Server
+# ==============================================================================
+# shellcheck disable=SC1091
+source /usr/lib/hassio-addons/base.sh
+
+declare -a options
+
+# Wait for Avahi to become available
+s6-svwait -u -t 5000 /var/run/s6/services/avahi
+
+# Wait at least 5 seconds before staring Homebridge
+# Avahi might need some time.
+sleep 5
+
+# Wait for Mongodb to become available
+s6-svwait -u -t 5000 /var/run/s6/services/mongodb
+
+hass.log.info 'Starting Multicast'
+
+# Run Multicast
+exec multicast start
+#sleep 900
